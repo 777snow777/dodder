@@ -1,0 +1,156 @@
+
+.mother{
+    z-index: 100;
+}
+
+#intro-dodder{
+    height: 50vh;
+}
+/* 
+#body-bg span{
+    background-color: rgb(139 142 75);
+} */
+
+#intro-dodder img{
+    height: 100%;
+}
+a{
+    color: wheat;
+}
+
+#welcome a{
+    color: #dadada00 !important;
+}
+
+#body-bg{
+    margin: 0;
+    position: relative;
+    background-color: black;
+}
+
+#text_message{
+    width: 50%;
+}
+
+#audio-record{
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+}
+#audio-record button{
+    size: 2em;
+}
+
+#dodder-web-highlight{
+    color: #ffffff;
+    padding: 3px;
+    text-decoration: underline;
+    mix-blend-mode: color-dodge;
+    text-shadow: 2px 0 2px #cb00ff, 1px 1px 1px #ff00dbf2, -2px 0px 1px rgb(255 0 240);
+    font-size: 1.1em;
+}
+
+#dodder-web{
+    color: wheat;
+    width: 100%;
+    top: 20vh;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.protected{
+    z-index: 100;
+}
+
+#signal-dodder{
+    position: relative;
+    z-index: 100;
+    color: wheat;
+    padding: 0 2%;
+    background-color: white;
+    color: rgb(191, 191, 214);
+    font-size:1.3em;
+    text-shadow: 2px 0 2px #3c357c81, -2px 0 2px rgb(63, 62, 120), 4px 0 3px #5a548dd7, -4px 0 3px rgba(91, 90, 146, 0.482), 0 1px 1px #a6a6a6b9;
+
+}
+
+.horizontal{
+    display:flex;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    overflow: visible;
+}
+
+.dodder-signal{
+    color:wheat;
+}
+
+#hello-daughter{
+    color: wheat;
+    justify-content: space-between;
+    display: flex;
+    position: relative;
+    z-index: 100;
+    padding: 1% 2% 0 2%;
+}
+#hello-daughter img{
+    height: 60px;
+    
+}
+
+#hello-daughter form{
+    width: 80%;
+}
+
+#dodder-audio audio{
+    display: block;
+}
+
+#dodder-web-invite{
+    /* background-color: rgb(139 142 75); */
+    width: 100%;;
+    text-shadow: 
+    -1px 0 1px #000000b3, 
+    -1px 0 1px #fffffff2,
+    -2px 0px 1px rgb(0, 0, 0);
+    top: 0;
+    left: 0;
+    position: absolute;
+    /* height: 25vh; */
+    color: black;
+    background-color:  rgb(139 142 75);
+
+}
+
+#intro{
+    text-shadow: 0 1px #000000cc, -1px 0 1px #fffffff2, -2px 0px 1px rgb(255 255 255);
+    /* color: rgb(102, 101, 101) !important; */
+    font-size: 1.1em;
+    padding: 1% 2%;
+    width: 100%;
+    mix-blend-mode: color-burn;
+
+}
+
+#welcome{
+    text-shadow: 0px 1px 2px #000000d4, -2px -1px 1px rgb(0 0 0 / 43%), 1px 0px 1px rgb(32 4 4), 0 2px 3px #000000, 0 -2px 2px rgb(94 123 4);
+    mix-blend-mode: difference;
+    margin: 1% 0 0 0;
+    padding:0;
+    color: rgb(139 142 75);
+
+}
+
+#grow_dodder{
+    display: flex;
+}
+
+/* #grow_dodder span{
+    mix-blend-mode: difference;
+} */
