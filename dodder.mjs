@@ -2,7 +2,8 @@ let dodder_web =[]
 let chunks = [];
 
 window.onload=()=>{  
-
+  
+   console.log(navigator.mediaDevices)
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     setupMedia()
   } else {
@@ -22,7 +23,7 @@ window.onload=()=>{
     let dodder = data.dodder
     dodder.forEach((dodder_entry)=> {dodder_web.push(dodder_entry)})
   }).catch(error => console.error('Error occurred:', error));
-  web.onmousemove=(ev)=>{
+  web.ontouchmove=(ev)=>{
     if (ev.target.className != "protected" && dodder_web.length > 0){
         let selectedIndex = Math.floor(dodder_web.length*Math.random())
         let msg = dodder_web[selectedIndex] 

@@ -38,7 +38,7 @@ app.use(express.static(path.join('')));
 
 // app.use(formidable());
 const client = new Client({
-    user: 'postgres',
+    user: 'angelofmusic',
     host: 'localhost',
     database: 'webapp',
     password: 'dodder',
