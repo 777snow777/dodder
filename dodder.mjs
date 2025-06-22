@@ -7,7 +7,7 @@ window.onload=()=>{
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     setupMedia()
   } else {
-    document.getElementById("audio-record").display = "none"
+    document.getElementById("audio-record").style.display = "none"
     console.log("getUserMedia not supported on your browser!");
   }
 
@@ -24,43 +24,53 @@ window.onload=()=>{
     dodder.forEach((dodder_entry)=> {dodder_web.push(dodder_entry)})
   }).catch(error => console.error('Error occurred:', error));
   web.ontouchmove=(ev)=>{
-    if (ev.target.className != "protected" && dodder_web.length > 0){
-        let selectedIndex = Math.floor(dodder_web.length*Math.random())
-        let msg = dodder_web[selectedIndex] 
-        if (msg.message_type == "text"){
-          let txt = document.createElement("div")
-          txt.innerHTML = msg.message
-          txt.classList.add("dodder-signal")
-          let width = 20+0.5*msg.message.length*Math.random() + 10*Math.random()
-          if (width > 30){
-            txt.style.width=20+60*Math.random()+"%"
-            txt.classList.add("horizontal")
-            txt.style.marginRight =50+20*Math.random()+"px"
-          }else{
-            txt.style.width=20+0.15*width+"%"
-          }
-          txt.style.marginLeft =20+20*Math.random()+"px"
-  
-          txt.style.fontSize=0.5+0.55*Math.random()+"rem"
-          ev.target.appendChild(txt)
-        }else if (msg.message_type = "audio"){
-          let audio = document.createElement("audio")
-          audio.src =msg.message
-          audio.controls=true
-          // audio.loop = true
-          audio.volume = 0.5*Math.random()
-          audio.style.display ="none"
-          ev.target.appendChild(audio)
-          audio.play()
-        }
-       
-    }
+    generateText(ev)
  }
+  web.onmousemove=(ev)=>{
+    generateText(ev)
+  }
+}
+
+
+function generateText() {
+  if (ev.target.className != "protected" && dodder_web.length > 0){
+    let selectedIndex = Math.floor(dodder_web.length*Math.random())
+    let msg = dodder_web[selectedIndex] 
+    if (msg.message_type == "text"){
+      let txt = document.createElement("div")
+      txt.innerHTML = msg.message
+      txt.classList.add("dodder-signal")
+      let width = 20+0.5*msg.message.length*Math.random() + 10*Math.random()
+      if (width > 30){
+        txt.style.width=20+60*Math.random()+"%"
+        txt.classList.add("horizontal")
+        txt.style.marginRight =50+20*Math.random()+"px"
+      }else{
+        txt.style.width=20+0.15*width+"%"
+      }
+      txt.style.marginLeft =20+20*Math.random()+"px"
+
+      txt.style.fontSize=0.5+0.55*Math.random()+"rem"
+      ev.target.appendChild(txt)
+    }else if (msg.message_type = "audio"){
+      let audio = document.createElement("audio")
+      audio.src =msg.message
+      audio.controls=true
+      // audio.loop = true
+      audio.volume = 0.5*Math.random()
+      audio.style.display ="none"
+      ev.target.appendChild(audio)
+      audio.play()
+    }
+  }
 }
 
 function setupMedia(){
   const record = document.querySelector(".record");
   const stop = document.querySelector(".stop");
+  const clear = document.querySelector("#clear-audio")
+  const mute = document.querySelector("#mute-audio")
+
   let send_audio = document.getElementById("send-audio")
   send_audio.addEventListener("click", sendAudio)
   console.log("getUserMedia supported.");
@@ -87,6 +97,13 @@ function setupMedia(){
         record.style.background = "";
         record.style.color = "";
       };
+      clear.onclick = () => {
+        chunks = []
+      }
+      mute.onclick = () =>{
+        
+      }
+      
     
     })
     .catch((err) => {
