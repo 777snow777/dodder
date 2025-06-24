@@ -104,7 +104,7 @@ app.get('/init-dodder-web', (req, res) => {
  app.post('/dodder-web-send', (req, res) => {
   try {
       client.query(`INSERT INTO ${dbname} (message, message_type) VALUES ($1, $2)`, [req.body.text_message,"text"]);
-      res.status(204).send();
+      res.status(200).json({textMessage: req.body.text_message});
     } catch (error) {
       console.error(error);
       res.status(error.err).send();

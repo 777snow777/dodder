@@ -29,6 +29,7 @@ a{
 }
 
 #text_message{
+    border: 2px solid grey;
     width: 50%;
 }
 
@@ -38,7 +39,8 @@ a{
     display: flex;
 }
 #audio-record button{
-    size: 2em;
+    font-size: 1.5em;
+    font-weight: 800;
 }
 
 #dodder-web-highlight{
@@ -149,6 +151,9 @@ a{
 
 #grow_dodder{
     display: flex;
+    margin-bottom: 1%;
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
 /* #grow_dodder span{

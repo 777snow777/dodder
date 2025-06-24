@@ -1,5 +1,6 @@
 let dodder_web =[]
 let chunks = [];
+let audioOn = false
 
 window.onload=()=>{  
   
@@ -32,7 +33,7 @@ window.onload=()=>{
 }
 
 
-function generateText() {
+function generateText(ev) {
   if (ev.target.className != "protected" && dodder_web.length > 0){
     let selectedIndex = Math.floor(dodder_web.length*Math.random())
     let msg = dodder_web[selectedIndex] 
@@ -56,11 +57,15 @@ function generateText() {
       let audio = document.createElement("audio")
       audio.src =msg.message
       audio.controls=true
+      console.log(msg.message)
+      audio.playsinline = true;
       // audio.loop = true
-      audio.volume = 0.5*Math.random()
+      audio.volume = 0.35*Math.random()
       audio.style.display ="none"
       ev.target.appendChild(audio)
-      audio.play()
+      if (audioOn == true){
+      	audio.play()
+      }
     }
   }
 }
@@ -72,7 +77,7 @@ function setupMedia(){
   const mute = document.querySelector("#mute-audio")
 
   let send_audio = document.getElementById("send-audio")
-  send_audio.addEventListener("click", sendAudio)
+ // send_audio.addEventListener("click", sendAudio)
   console.log("getUserMedia supported.");
   navigator.mediaDevices
     .getUserMedia(
@@ -97,11 +102,29 @@ function setupMedia(){
         record.style.background = "";
         record.style.color = "";
       };
+      send_audio.onclick = () =>{
+        if (mediaRecorder.state == 'recording'){
+            mediaRecorder.stop()
+	    record.style.background = ''
+	    record.style.color = ''
+	}
+        sendAudio()
+
+      }
       clear.onclick = () => {
         chunks = []
       }
       mute.onclick = () =>{
-        
+	let audioElements = document.querySelectorAll('audio')
+        if (audioOn == false){
+	     mute.innerHTML = 'sound off'
+	     audioElements.forEach(el=>el.play())
+	     audioOn = true;
+	}else{
+	     mute.innerHTML = 'sound on'
+	     audioElements.forEach(el=>el.pause())
+	     audioOn = false
+	}
       }
       
     
@@ -125,7 +148,7 @@ async function sendAudio(){
     method: "POST", 
     body:  formData}
   ).then(()=>{
-    // chunks = [];
+    chunks = [];
   }).catch(error => {
     console.error('Error:', error); 
   });
@@ -146,7 +169,10 @@ function sendSignal(event){
       'Content-Type': 'application/json' 
     },
     body: body
-  }).then(()=>{ 
+  }).then(response => response.json())
+  .then((data)=>{ 
+    let dodderEntry = {message: data.textMessage, message_type: 'text'}
+    dodder_web.push(dodderEntry)
     this.reset()
   }).catch(error => {
     console.error('Error:', error); 
