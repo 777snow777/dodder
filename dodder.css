@@ -22,11 +22,56 @@ a{
     color: #dadada00 !important;
 }
 
+body{
+    background-color: rgb(219, 219, 219);
+    margin: 0 !important;
+    position: fixed;
+    top: 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+#bg-video{
+    position: absolute;
+    top: 0%;
+    height: 100%;
+    z-index: 0;
+    left: 0%;
+    width: 100%;
+}
+
+#text{
+    text-align: center;
+    padding-left: 25%;
+    padding-right: 25%;
+    color: rgb(166, 165, 165);
+    z-index: 1;
+
+}
+
 #body-bg{
     margin: 0;
     position: relative;
     background-color: black;
+    height: 100vh;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-weight: 100;
+
 }
+
+#dodder-top, #dodder-bottom{
+    height: 10vh;
+    padding: 0 40%;
+    z-index: 100;
+}
+
+#dodder-main{
+    height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
 
 #text_message{
     border: 2px solid grey;
@@ -35,12 +80,30 @@ a{
 
 #audio-record{
     width: 100%;
-    justify-content: space-between;
-    display: flex;
+    /* justify-content: space-between; */
+    /* display: flex; */
 }
-#audio-record button{
-    font-size: 1.5em;
-    font-weight: 800;
+
+
+
+button{
+    z-index: 100;
+    font-size: 0.85em;
+    display: block;
+    font-weight: 100;
+    width: 100%;
+    margin: 3% 2%; 
+    box-shadow:inset 0px 0px 14px -3px #f2fadc;
+    background: linear-gradient(to bottom, #6f7464 5%, #191312 100%);	background-color:#6f7464;
+	border-radius:6px;
+	cursor:pointer;
+	color:#dfdfdf;
+    height: 80%;
+	padding: 1% 2%;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ced9bf;
+    
+
 }
 
 #dodder-web-highlight{
@@ -73,9 +136,7 @@ a{
 #signal-dodder{
     position: relative;
     z-index: 100;
-    color: wheat;
     padding: 0 2%;
-    background-color: white;
     color: rgb(191, 191, 214);
     font-size:1.3em;
     text-shadow: 2px 0 2px #3c357c81, -2px 0 2px rgb(63, 62, 120), 4px 0 3px #5a548dd7, -4px 0 3px rgba(91, 90, 146, 0.482), 0 1px 1px #a6a6a6b9;
