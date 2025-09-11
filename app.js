@@ -45,7 +45,7 @@ const client = new Client({
     port: 5432,
   });
 
-client.connect()
+// client.connect()
 
 
 async function createDodderTable() {
@@ -98,13 +98,27 @@ app.get('/init-dodder-web', (req, res) => {
     })
     
   })
-  
+});
+
+app.get('/init-audio', (req, res) => {
+  fs.readdir("uploads", (err, fileNames) => {
+    if (err) {
+      console.error('Error reading directory:', err);
+      return;
+    }
+    let audioFiles = fileNames.filter((fn)=> (fn.includes(".wav") ||fn.includes(".mp3") || fn.includes(".mp4")))
+    let responseData = {
+      audioFiles: audioFiles
+    }
+    res.status(200).json(responseData);
+  })
+    
 });
 
  app.post('/dodder-web-send', (req, res) => {
   try {
       client.query(`INSERT INTO ${dbname} (message, message_type) VALUES ($1, $2)`, [req.body.text_message,"text"]);
-      res.status(200).json({textMessage: req.body.text_message});
+      res.status(204).send();
     } catch (error) {
       console.error(error);
       res.status(error.err).send();
@@ -118,7 +132,10 @@ app.post('/dodder-web-save-audio',upload.single('recording'), (req, res) => {
   try {
       let fn = "uploads/"+req.file.filename
       client.query(`INSERT INTO ${dbname} (message, message_type) VALUES ($1, $2)`, [fn,"audio"]);
-      res.status(204).send();
+      let responseData = {
+        filename: req.file.filename
+      }
+      res.status(200).json(responseData);
     } catch (error) {
       console.error(error);
       res.status(error.err).send();

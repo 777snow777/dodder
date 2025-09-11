@@ -1,7 +1,9 @@
 let dodder_web =[]
+let dodder_audio=[]
+let audio_index = 0
 let chunks = [];
 let audioOn = false
-
+let text = false
 window.onload=()=>{  
   
    console.log(navigator.mediaDevices)
@@ -11,29 +13,56 @@ window.onload=()=>{
     document.getElementById("audio-record").style.display = "none"
     console.log("getUserMedia not supported on your browser!");
   }
+  let archive_player =document.getElementById("dodder-sound")
+  let begin = document.getElementById("open-archive")
+  begin.addEventListener("click", ()=>{
+    begin.style.visibility="hidden"
+    archive_player.play()
+  }) 
+  archive_player.addEventListener("ended", ()=>{
+    audio_index += 1
+    archive_player.src = dodder_audio[audio_index%dodder_audio.length]
+    archive_player.play()
+  })
 
-  
+  if (text){
+    //include text interface
+    initializeText()
+  }else{
+    fetch('/init-audio')
+    .then(response => response.json())
+    .then(data => {
+      dodder_audio = data.audioFiles
+      if (dodder_audio.length > 0){
+        archive_player.src = dodder_audio[0]
+        begin.disabled = false
+      }
+    }).catch(error => console.error('Error occurred:', error));
+  }
+}
+
+function initializeText(){
   var web = document.getElementById("dodder-web");
   let dodderForm = document.getElementById("grow_dodder")
   dodderForm.addEventListener("submit", sendSignal)
- 
   fetch('/init-dodder-web')
   .then(response => response.json())
   .then(data => {
     // let audioContainer = document.getElementById("dodder-audio")
     let dodder = data.dodder
+    dodder_audio = data.audioFiles
     dodder.forEach((dodder_entry)=> {dodder_web.push(dodder_entry)})
   }).catch(error => console.error('Error occurred:', error));
   web.ontouchmove=(ev)=>{
-    generateText(ev)
+    growWeb(ev)
  }
   web.onmousemove=(ev)=>{
-    generateText(ev)
+    growWeb(ev)
   }
 }
 
 
-function generateText(ev) {
+function growWeb(ev) {
   if (ev.target.className != "protected" && dodder_web.length > 0){
     let selectedIndex = Math.floor(dodder_web.length*Math.random())
     let msg = dodder_web[selectedIndex] 
@@ -71,12 +100,11 @@ function generateText(ev) {
 }
 
 function setupMedia(){
-  const record = document.querySelector(".record");
-  const stop = document.querySelector(".stop");
-  const clear = document.querySelector("#clear-audio")
-  const mute = document.querySelector("#mute-audio")
+  const record = document.querySelector("#record-audio");
+  const cancel = document.querySelector("#cancel-audio")
+  let archive_player =document.getElementById("dodder-sound")
 
-  let send_audio = document.getElementById("send-audio")
+  //let send_audio = document.getElementById("send-audio")
  // send_audio.addEventListener("click", sendAudio)
   console.log("getUserMedia supported.");
   navigator.mediaDevices
@@ -88,45 +116,46 @@ function setupMedia(){
     ).then((stream) => {
       const mediaRecorder = new MediaRecorder(stream);
       record.onclick = () => {
-        mediaRecorder.start(10);
-        console.log(mediaRecorder.state);
-        record.style.background = "red";
-        record.style.color = "black";
+        if (mediaRecorder.state == 'recording'){
+          //button trigger = finish recording
+          mediaRecorder.stop();
+          record.className = "idle"        
+          console.log(chunks);
+          sendAudio()
+          record.innerHTML="record"
+          archive_player.play()
+        }else{
+          record.className = "recording"        
+          //button trigger = start recording
+          archive_player.pause()
+          mediaRecorder.start(10);
+          console.log(mediaRecorder.state);
+          record.innerHTML = "finish"
+        }
+
+
       };
       mediaRecorder.ondataavailable = (e) => {
         chunks.push(e.data);
       };
-      stop.onclick = () => {
-        mediaRecorder.stop();
-        console.log(chunks);
-        record.style.background = "";
-        record.style.color = "";
-      };
-      send_audio.onclick = () =>{
-        if (mediaRecorder.state == 'recording'){
-            mediaRecorder.stop()
-	    record.style.background = ''
-	    record.style.color = ''
-	}
-        sendAudio()
 
-      }
-      clear.onclick = () => {
+      // send_audio.onclick = () =>{
+      //   if (mediaRecorder.state == 'recording'){
+      //       mediaRecorder.stop()
+      //       send_audio.innerHTML = "record"
+      //       record.style.background = ''
+      //       record.style.color = ''
+      //       sendAudio()
+      //   }else{
+      //     send_audio.innerHTML = "finish"
+      //   }
+
+     // }
+      cancel.onclick = () => {
         chunks = []
+        record.className = "idle"    
+        record.innerHTML="record"    
       }
-      mute.onclick = () =>{
-	let audioElements = document.querySelectorAll('audio')
-        if (audioOn == false){
-	     mute.innerHTML = 'sound off'
-	     audioElements.forEach(el=>el.play())
-	     audioOn = true;
-	}else{
-	     mute.innerHTML = 'sound on'
-	     audioElements.forEach(el=>el.pause())
-	     audioOn = false
-	}
-      }
-      
     
     })
     .catch((err) => {
@@ -147,7 +176,9 @@ async function sendAudio(){
   fetch("/dodder-web-save-audio",{
     method: "POST", 
     body:  formData}
-  ).then(()=>{
+  ).then(response => response.json())
+  .then((data)=>{
+    dodder_audio.push(data.filename)
     chunks = [];
   }).catch(error => {
     console.error('Error:', error); 
