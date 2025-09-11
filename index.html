@@ -8,98 +8,109 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>   
     </head>
     <video src="fires2.mp4" autoplay='true' playsinline="" loop='true' type="video/mp4" id="bg-video" muted="true"></video>
-    <div id="dodder-wrap">
-        <div id="dodder-left">
-            <button id="record-audio" class="idle">record</button>
-            <button id="cancel-audio">cancel</button>
-            <div id="instr-text">
-                <span class="mother">the micro-computer holds recordings of grief</span><br><br>
-                <span class="mother">each recording comes from someone who has shared physical proximity with this computer</span><br><br>
-                <span class="mother">you can use the record button above to add a message of the places and people, memories or dreams, present today in your grief </span><br><br>
-                <span class="mother">the recording will only be shared with others who are in physical proximity to this server</span><br><br><br><br>
-                <span class="instr2">this archive can also be accessed on any device connected to the local WiFi -</span>
-                <span class="instr2">local wifi network name -</span>
-                <span class="instr2">local wifi network passwork -</span>
-                <span class="instr2">IP address</span>
-
-
-
-
-
+    <body>
+        <div id="top">
+            <div id="audio-buttons">
+                <button id="record-audio" class="idle">record</button>
+                <button id="cancel-audio">cancel</button>
             </div>
+            <button id="open-archive" disabled>listen to archive</button>
         </div>
-        <button id="open-archive" disabled>listen to archive</button>
-        <div id="dodder-main">
-            <marquee behavior="scroll" direction="up" id="text" scrolldelay="180">
-                when you look at the Internet  <br><br><br><br>
-                
-                what do you see <br><br><br><br>
-    
-                do you see the Philippines<br><br><br><br>
-                
-                Guam<br><br><br><br>
-                
-                Fiji<br><br><br><br>
-                
-                Hawaii<br><br><br><br>
-                
-                do you see all the land the US military has occupied<br><br><br><br>
-                
-                for 42 years, Internet infrastructure has been constructed <br><br><br><br>
-                
-                as an apparatus for the US government to occupy territory<br><br><br><br>
-                
-                to disrupt the sovereignty of Indigenous people<br><br><br><br>
-                
-                to centralize power<br><br><br><br>
-                
-                the placement of transcontinental fiber optic cables trace the ship routes of 18th century colonization <br><br><br><br>
-                
-                cable companies select islands with visible US military presence as sites for cable landing points and stations because within the Western colonial gaze, these places are isolated and securable <br><br><br><br>
-                
-                from its origin, the Internet has been a global project<br><br><br><br>
-                
-                of expansion<br><br><br><br>
-                
-                of obfuscation<br><br><br><br>
-                
-                of excess<br><br><br><br>
-               
-                rooted in U.S. military needs during the Cold War<br><br><br><br>
-                
-                for a communication system that could not be targeted by nuclear weapons<br><br><br><br>
-                
-                the Internet has always been strategically obfuscated<br><br><br><br>
-                
-                meanwhile, techno-oligarchs and fascist governments weaponize this obfuscation <br><br><br><br>
-                
-                to expand systems of panoptic surveillance<br><br><br><br>
-                
-                to capture bodily movement<br><br><br><br>
-
-                Meta<br>Amazon<br>Google<br>Amazon<br>invest in undersea cables
-
-                
-                the Internet remains a system that is simultaneously<br>outside of public control<br> and centralizing control of the public<br><br><br><br>
-
-                what would it look to build local networks <br><br><br><br>
-                
-                that are collectively understood and stewarded<br><br><br><br>
-                                
-                rooted in presence<br><br><br><br>
-                
-                mending to community needs<br><br><br><br>
-                  
-            </marquee>
+        <div id="dodder-wrap">
             
-            <!-- <span class="mother">due to its weak photosynthetic capacity, dodder must find a host within the first few days after germinating in soil or it will die </span><br>
-            <span class="mother">after finding a host, dodder twists around it and inserts a haustoria into the stem of the host. it begins to draw water and nutrients through the haustoria from the host and its anchoring root dies. it sends more haustorias into its host.</span><br>
-            <span class="mother">dodder exchanges millions of mRNA molecules with its host, creating a dialogue with the other plant. it uses mRNA to encode messages that elicit a specific response from its host.</span><br>
-            <span class="mother">dodder can attach to multiple plants at once and send signals between these plants. this is called a <span id="dodder-web-highlight">dodder web</span>.</span><br>
-            <span>when the health of one of the host plants is threatened, it can send messages through the dodder web to nearby plants to prepare a defense</span> -->
+            <div id="dodder-left">
+                <div id="instr-text">
+                    <span class="mother">this is a grief altar</span><br>
+                    <span class="mother">a space to hold and decompose grief</span><br><br>
+
+                    <span class="mother">it is a part of Dodder Web - a localized communication network which collects, stores, and transmits sound recordings</span><br>
+                    <span class="mother">each recording comes from someone who has shared physical presence with this network</span><br><br>
+                    <span class="mother">you can use the record button above to add a message to the altar</span><br><br>
+                    <span class="mother">the recording will only be shared with others who are in physical proximity to this altar</span><br><br><br><br>
+                    <span class="instr2">this archive can also be accessed on any device connected to the local WiFi -</span>
+                    <span class="instr2">local wifi network name -</span>
+                    <span class="instr2">local wifi network passwork -</span>
+                    <span class="instr2">IP address</span>
+    
+    
+    
+    
+    
+                </div>
+            </div>
+            <div id="dodder-main">
+                <marquee behavior="scroll" direction="up" id="text" scrolldelay="180">
+                    when you look at the Internet  <br><br><br><br>
+                    
+                    what do you see <br><br><br><br>
+        
+                    do you see the Philippines<br><br><br><br>
+                    
+                    Guam<br><br><br><br>
+                    
+                    Fiji<br><br><br><br>
+                    
+                    Hawaii<br><br><br><br>
+                    
+                    do you see all the land the US military has occupied<br><br><br><br>
+                    
+                    for 42 years, Internet infrastructure has been constructed <br><br><br><br>
+                    
+                    as an apparatus for the US government to occupy territory<br><br><br><br>
+                    
+                    to disrupt the sovereignty of Indigenous people<br><br><br><br>
+                    
+                    to centralize power<br><br><br><br>
+                    
+                    the placement of transcontinental fiber optic cables trace the ship routes of 18th century colonization <br><br><br><br>
+                    
+                    cable companies select islands with visible US military presence as sites for cable landing points and stations<br><br><br><br> because within the Western colonial gaze, these places are isolated and securable <br><br><br><br>
+                    
+                    from its origin, the Internet has been a global project<br><br><br><br>
+                    
+                    of expansion<br><br><br><br>
+                    
+                    of obfuscation<br><br><br><br>
+                    
+                    of excess<br><br><br><br>
+                   
+                    rooted in U.S. military needs during the Cold War<br><br><br><br>
+                    
+                    for a communication system that could not be targeted by nuclear weapons<br><br><br><br>
+                    
+                    the Internet has always been strategically obfuscated<br><br><br><br>
+                    
+                    meanwhile, techno-oligarchs and fascist governments weaponize this obfuscation <br><br><br><br>
+                    
+                    to expand systems of panoptic surveillance<br><br><br><br>
+                    
+                    to capture bodily movement<br><br><br><br>
+    
+                    Meta<br>Amazon<br>Google<br>Amazon<br>invest in undersea cables
+    
+                    
+                    the Internet remains a system that is simultaneously<br>outside of public control<br> and centralizing control of the public<br><br><br><br>
+    
+                    what would it look to build local networks <br><br><br><br>
+                    
+                    that are collectively understood and stewarded<br><br><br><br>
+                                    
+                    rooted in presence<br><br><br><br>
+                    
+                    mending to community needs<br><br><br><br>
+                      
+                </marquee>
+                
+                <!-- <span class="mother">due to its weak photosynthetic capacity, dodder must find a host within the first few days after germinating in soil or it will die </span><br>
+                <span class="mother">after finding a host, dodder twists around it and inserts a haustoria into the stem of the host. it begins to draw water and nutrients through the haustoria from the host and its anchoring root dies. it sends more haustorias into its host.</span><br>
+                <span class="mother">dodder exchanges millions of mRNA molecules with its host, creating a dialogue with the other plant. it uses mRNA to encode messages that elicit a specific response from its host.</span><br>
+                <span class="mother">dodder can attach to multiple plants at once and send signals between these plants. this is called a <span id="dodder-web-highlight">dodder web</span>.</span><br>
+                <span>when the health of one of the host plants is threatened, it can send messages through the dodder web to nearby plants to prepare a defense</span> -->
+            </div>
+            <audio id="dodder-sound" ></audio>
         </div>
-        <audio id="dodder-sound" ></audio>
-    </div>
+    </body>
+    
     
     <!-- <body id="body-bg">
         
