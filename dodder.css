@@ -65,6 +65,11 @@ body{
     flex-wrap: nowrap;
 }
 
+
+#cancel-audio{
+    visibility: hidden;
+}
+
 #text{
     width: 95%;
     height: 30%;

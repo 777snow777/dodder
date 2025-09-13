@@ -124,6 +124,7 @@ function setupMedia(){
           sendAudio()
           record.innerHTML="record"
           archive_player.play()
+          cancel.style.visibility="hidden"
         }else{
           record.className = "recording"        
           //button trigger = start recording
@@ -131,6 +132,7 @@ function setupMedia(){
           mediaRecorder.start(10);
           console.log(mediaRecorder.state);
           record.innerHTML = "finish"
+          cancel.style.visibility="visible"
         }
 
 
