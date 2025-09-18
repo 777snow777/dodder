@@ -100,7 +100,8 @@ app.get('/init-dodder-web', (req, res) => {
   })
 });
 
-app.get('/init-audio', (req, res) => {
+
+app.get('/get-recordings', (req, res) => {
   fs.readdir("uploads", (err, fileNames) => {
     if (err) {
       console.error('Error reading directory:', err);

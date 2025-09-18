@@ -4,13 +4,13 @@ let audio_index = 0
 let chunks = [];
 let audioOn = false
 let text = false
+
 window.onload=()=>{  
   
    console.log(navigator.mediaDevices)
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     setupMedia()
   } else {
-    document.getElementById("audio-record").style.display = "none"
     console.log("getUserMedia not supported on your browser!");
   }
   let archive_player =document.getElementById("dodder-sound")
@@ -21,15 +21,14 @@ window.onload=()=>{
   }) 
   archive_player.addEventListener("ended", ()=>{
     audio_index += 1
-    archive_player.src = dodder_audio[audio_index%dodder_audio.length]
-    archive_player.play()
+    updateArchivePlayer() 
   })
 
   if (text){
     //include text interface
     initializeText()
   }else{
-    fetch('/init-audio')
+    fetch('/get-recordings')
     .then(response => response.json())
     .then(data => {
       dodder_audio = data.audioFiles
@@ -40,6 +39,15 @@ window.onload=()=>{
     }).catch(error => console.error('Error occurred:', error));
   }
 }
+
+function updateArchivePlayer(){
+   let archive_player =document.getElementById("dodder-sound")
+   updateRecordingsList()
+   archive_player.src = dodder_audio[audio_index%dodder_audio.length]
+   console.log(dodder_audio)
+   archive_player.play()
+}
+
 
 function initializeText(){
   var web = document.getElementById("dodder-web");
@@ -123,7 +131,9 @@ function setupMedia(){
           console.log(chunks);
           sendAudio()
           record.innerHTML="record"
-          archive_player.play()
+	  if (document.getElementById("open-archive").style.visibility=="hidden"){
+	      updateArchivePlayer()
+          }
           cancel.style.visibility="hidden"
         }else{
           record.className = "recording"        
@@ -165,13 +175,21 @@ function setupMedia(){
     });
 }
 
+async function updateRecordingsList(){
+  fetch("/get-recordings"
+  ).then(response => response.json())
+  .then((data)=>{
+    dodder_audio = data.audioFiles
+  }).catch(error => {
+    console.error('Error:', error); 
+  });
+}
 
 async function sendAudio(){
   const blob = new Blob(chunks, { type: "audio/mp3; codecs=opus" });
   console.log(blob)
   // const arrayBuffer = await blob.arrayBuffer(chunks)
   // let buffer = Buffer.from(arrayBuffer);
-  // console.log(arrayBuffer)
   var formData = new FormData();
   formData.append("recording", blob, "recording.mp3");
 
