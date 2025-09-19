@@ -23,7 +23,7 @@ a{
 }
 
 body{
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(130, 138, 70);
     margin: 0 !important;
     position: fixed;
     top: 0;
@@ -52,10 +52,11 @@ body{
 
 #dodder-wrap{
     position: fixed;
-    top: 10vh;
+    top: 14vh;
     width: 100%;
     z-index: 100;
     display: flex;
+    flex-direction: column;
     flex-wrap: no-wrap;
 }
 
@@ -65,13 +66,13 @@ body{
 	font-size: 1.6em;
     }
     #dodder-left{
-        width: 70vw !important;
-	height: 50vh !important;
 	margin-left: 15%;
+	overflow: scroll;
     }
 }
 
 #audio-buttons{
+    height: 100%;
     width: 30%;
     display: flex;
     flex-wrap: nowrap;
@@ -92,9 +93,8 @@ body{
     z-index: 1;
     font-size: 2.25em;
     opacity: 0.75;
-    text-shadow:0px 1px 2px rgb(152, 141, 121);
+    text-shadow: 1px 1px 5px rgb(22, 23, 17);
     color: rgb(74, 74, 24);
-
 }
 
 .instr2{
@@ -109,8 +109,9 @@ body{
 }
 
 #instr-text{
-    color: rgb(110, 110, 36);
-    font-size: 1.1em;
+    text-shadow: 1px 1px 3px rgb(182, 185, 165);
+    color: rgb(166, 166, 150);
+    font-size: 1.5em;
     padding-top: 2%;
 }
 
@@ -125,11 +126,13 @@ body{
 }
 
 #dodder-left{
-    overflow-x: scroll;
     font-size: 1.3em;
     height: 100vh;
-    width: 40%;
     z-index: 100;
+    width: 70vw !important;
+    height: 50vh !important;
+    margin-left: 15%;
+
 }
 
 #dodder-main{
@@ -174,7 +177,7 @@ button:hover{
     justify-content: space-between;
     position: fixed;
     width: 100%;
-    height: 10vh;
+    height: 14vh;
     top: 0;
     left: 0;
 }
@@ -184,14 +187,14 @@ button{
     opacity: 0.85;
     z-index: 100;
     color: black;
-    font-size: 1em;
+    font-size: 1.3em;
     display: block;
-    font-weight: 100;
+    font-weight: 400;
     width: 50%;
     margin: 1% 2%; 
 	border-radius:6px;
 	cursor:pointer;
-    height: 8vh;
+    height: 12vh;
     mix-blend-mode: color-dodge;
 	padding: 1% 2%;
 	text-decoration:none;
@@ -268,7 +271,7 @@ button{
 
 #open-archive{
     z-index: 100;
-    width: 40%;
+    width: 25%;
 }
 
 #dodder-web-invite{
@@ -284,7 +287,6 @@ button{
     /* height: 25vh; */
     color: black;
     background-color:  rgb(139 142 75);
-
 }
 
 #intro{
